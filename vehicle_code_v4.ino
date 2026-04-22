@@ -1,0 +1,88 @@
+
+#include <PID_v1.h>
+
+#define LSensePin  A0
+#define RSensePin  A1
+#define LMotorPin  9
+#define RMotorPin  10
+
+const int MaxBaseSpeed = 120;
+const int MinBaseSpeed = 75;
+
+double Setpoint = 0;
+double Input = 0;
+double Output = 0;
+
+double Kp = 5;
+double Ki = 0;
+double Kd = 1;
+
+PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
+
+int leftOffset = 0;
+int rightOffset = 0;
+int lostTrackThreshold = 40;   // tune try
+
+int readSensorLightSmooth(int pin) {
+  return (analogRead(pin) + analogRead(pin) + analogRead(pin)) / 3;
+}
+
+void calibrateSensors() {
+  long leftSum = 0;
+  long rightSum = 0;
+  const int N = 100;
+
+  for (int i = 0; i < N; i++) {
+    leftSum += readSensorLightSmooth(LSensePin);
+    rightSum += readSensorLightSmooth(RSensePin);
+    delay(1);
+  }
+
+  leftOffset = leftSum / N;
+  rightOffset = rightSum / N;
+}
+
+void setup() {
+  pinMode(LSensePin, INPUT);
+  pinMode(RSensePin, INPUT);
+  pinMode(LMotorPin, OUTPUT);
+  pinMode(RMotorPin, OUTPUT);
+
+
+  calibrateSensors();
+
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetOutputLimits(-70, 70);
+  myPID.SetSampleTime(10);
+}
+
+void loop() {
+  int leftSenseRaw = readSensorLightSmooth(LSensePin);
+  int rightSenseRaw = readSensorLightSmooth(RSensePin);
+
+  int leftSense = leftSenseRaw - leftOffset;
+  int rightSense = rightSenseRaw - rightOffset;
+
+  int totalSignal = leftSenseRaw + rightSenseRaw;
+
+  if (totalSignal < lostTrackThreshold) {
+    analogWrite(LMotorPin, 0);
+    analogWrite(RMotorPin, 0);
+    return;
+  }
+
+  Input = leftSense - rightSense;
+
+  myPID.Compute();
+
+  // reduce speed when the error is big
+  int dynamicBase = MaxBaseSpeed - min(abs((int)Input) / 2, MaxBaseSpeed - MinBaseSpeed);
+  dynamicBase = constrain(dynamicBase, MinBaseSpeed, MaxBaseSpeed);
+
+  int LSpeed = constrain((int)(dynamicBase + Output), 0, 255);
+  int RSpeed = constrain((int)(dynamicBase - Output), 0, 255);
+
+  analogWrite(LMotorPin, LSpeed);
+  analogWrite(RMotorPin, RSpeed);
+
+}
