@@ -10,7 +10,7 @@ This repository contains the Arduino control code developed for a vehicle tracki
 - `vehicle_code_v4.ino` – final version with smoothing, calibration, and optimisation
 - `README.md` – description and version history
 
-## Project Summary
+## Project Summary 
 
 The project involves developing a vehicle that can follow a track using sensor inputs and motor control. The system reads values from sensors and adjusts motor speeds to maintain alignment with the track.
 
