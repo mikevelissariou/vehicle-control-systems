@@ -4,10 +4,10 @@ This repository contains the Arduino control code developed for a vehicle tracki
 
 ## Repository Contents
 
-- `vehicle_code_stage1.ino` – original version using basic sensor comparison
-- `vehicle_code_stage2.ino` – improved version with proportional control
-- `vehicle_code_stage3.ino` – implementation of PID control
-- `vehicle_code_v4.ino` – final version with smoothing, calibration, and optimisation
+- `vehicle_code_stage1.ino` – original version of code with basic sensor processing 
+- `vehicle_code_stage2.ino` – addition of proportional steering control 
+- `vehicle_code_stage3.ino` – Replaced proportional control with PID controller
+- `vehicle_code_v4.ino` – Added sensor smoothing calibration and lost-track handling
 - `README.md` – description and version history
 
 ## Project Summary 
