@@ -7,7 +7,7 @@
 #define RMotorPin  10
 
 const int MaxBaseSpeed = 120;
-const int MinBaseSpeed = 75; //both speeds changed for testing purposes
+const int MinBaseSpeed = 75; //speeds changed for testing purposes
 
 double Setpoint = 0;
 double Input = 0;
