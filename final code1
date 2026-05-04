@@ -1,0 +1,36 @@
+# Basic version of the control system
+
+def read_input():
+    try:
+        return float(input("Enter value: "))
+    except:
+        return 0
+
+
+def process(value):
+    # very simple processing (not optimised)
+    if value > 100:
+        return value * 0.5
+    elif value < 0:
+        return 0
+    else:
+        return value
+
+
+def main():
+    print("Starting system...")
+
+    while True:
+        val = read_input()
+
+        result = process(val)
+
+        print("Output:", result)
+
+        stop = input("Continue? (y/n): ")
+        if stop.lower() == "n":
+            break
+
+
+if __name__ == "__main__":
+    main()
