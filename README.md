@@ -1,54 +1,63 @@
 # Vehicle Control System – Change Management
 
-This repository contains the Arduino control code developed for a vehicle tracking system. The purpose of this repository is to demonstrate the application of change management and version control using GitHub.
+This repository contains two versions of control code developed for a vehicle tracking system. The purpose of the repository is to demonstrate the use of change management and version control through GitHub by tracking the progression from a basic control system to an improved implementation.
+
+---
 
 ## Repository Contents
 
-- `vehicle_code_stage1.ino` – original version of code with basic sensor processing 
-- `vehicle_code_stage2.ino` – addition of proportional steering control 
-- `vehicle_code_stage3.ino` – Replaced proportional control with PID controller
-- `vehicle_code_v4.ino` – Added sensor smoothing calibration and lost-track handling
-- `README.md` – description and version history
+- `implemented PID controller 1` – initial version using basic sensor-based motor control  
+- `final code1` – improved version with refined control logic and better system behaviour  
+- `README.md` – documentation of development process and version history  
 
-## Project Summary 
+---
 
-The project involves developing a vehicle that can follow a track using sensor inputs and motor control. The system reads values from sensors and adjusts motor speeds to maintain alignment with the track.
+## Project Summary
 
-The code was developed in stages, with each version improving the performance and reliability of the system.
+The project focuses on developing a vehicle control system that follows a track using sensor inputs and motor control. The system reads values from sensors and adjusts motor speeds to maintain alignment.
+
+Development was carried out iteratively, starting with a simple control approach and progressing to a more refined and stable solution. Each version improved the system’s performance, accuracy, and reliability.
+
+---
 
 ## Version History
 
-### v1.0.0
-- Initial version using basic left/right sensor comparison
+### v1.0.0 – Basic Control System
+- Implemented direct sensor-based motor control  
+- Used simple difference between sensor values  
+- Limited stability and responsiveness  
 
-### v1.1.0
-- Added proportional control to improve steering smoothness
+### v2.0.0 – Improved Control Logic
+- Refined control behaviour for smoother steering  
+- Improved handling of sensor input variations  
+- Increased overall tracking accuracy and stability  
 
-### v1.2.0
-- Introduced PID control for more accurate correction
-
-### v2.0.0
-- Added sensor smoothing
-- Implemented calibration offsets
-- Added lost-track detection
-- Improved overall performance
+---
 
 ## Change Management
 
-Change management was implemented using GitHub. The original version of the code was uploaded to the repository, and further development was carried out using separate versions. Each change was committed with a clear message describing what was modified.
+Change management was implemented using GitHub through commits, branching, and pull requests.
 
-A structured process was followed:
-- Initial code uploaded
-- Improvements developed in stages
-- Changes committed and documented
-- Final version produced with enhanced functionality
+The workflow followed was:
+- Initial version (`implemented PID controller 1`) created and committed  
+- A new branch was created to improve the control logic  
+- Changes were committed with clear messages (e.g. *"Add initial control logic implementation"*)  
+- A pull request was used to merge the improved version (`final code1`) into the main branch  
 
-This approach ensures that all changes are tracked, previous versions can be accessed, and the development process is clearly documented.
+This approach ensures that all changes are tracked, previous versions remain accessible, and the development process is clearly documented.
+
+---
 
 ## Example of Change
 
-One significant change was the transition from basic sensor comparison to PID control. This improved the system by allowing continuous adjustment of motor speeds, resulting in smoother and more accurate tracking.
+A key improvement was the transition from a basic sensor-based control system to a more refined control implementation.
+
+The initial version directly adjusted motor speeds based on sensor differences, which resulted in unstable movement and limited accuracy. In the updated version, the control logic was improved through a separate branch and merged via a pull request, resulting in smoother steering and better tracking performance.
+
+---
 
 ## Conclusion
 
-This repository demonstrates how version control and change management can be applied to an engineering project. By organising development into stages and documenting changes, the project becomes easier to manage, understand, and improve.
+This repository demonstrates how version control and change management can be applied to an engineering project. By structuring development through commits and pull requests, the evolution of the system is clearly documented.
+
+This approach improves traceability, allows comparison between versions, and provides clear evidence of iterative design and system improvement.****
